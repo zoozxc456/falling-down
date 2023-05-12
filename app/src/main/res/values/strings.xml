@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">FallingDown</string>
+    <string name="background">background</string>
+    <string name="txt_title_zh_tw">救救我啊我救我</string>
 </resources>
