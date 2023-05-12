@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/login_background"
+    android:gravity="center_horizontal"
+    android:orientation="vertical"
+    android:paddingLeft="16dp"
+    android:paddingRight="16dp">
+    <TextView
+        android:id="@+id/login_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:gravity="center_vertical"
+        android:fontFamily="@font/hanna"
+        android:letterSpacing=".05"
+        android:text="Login"
+        android:textColor="#FFFFFF"
+        android:textSize="32dp" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="2"
+        android:orientation="vertical">
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:baselineAligned="true">
+            <TextView
+                android:id="@+id/txt_introduce_en"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/hanna"
+                android:text="Falling Down A.K.A"
+                android:textColor="#FFFFFF"
+                android:textAlignment="center"
+                android:textSize="20dp" />
+            <TextView
+                android:id="@+id/txt_introduce_zh_1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/jf_openhuninn"
+                android:text="救救我啊我救我"
+                android:textColor="#FFFFFF"
+                android:textAlignment="center"
+                android:textSize="20dp" />
+        </LinearLayout>
+        <TextView
+            android:id="@+id/txt_introduce_zh_2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="9"
+            android:fontFamily="@font/jf_openhuninn"
+            android:lineHeight="30dp"
+            android:text="是一款幫助手機掉落時\n可以發出緊急通知給用戶的好夥伴"
+            android:textColor="#FFFFFF"
+            android:textAlignment="center"
+            android:textSize="20dp" />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="6"
+        android:orientation="vertical">
+        <TextView
+            android:id="@+id/txt_account"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Account"
+            android:textSize="20dp"
+            android:textColor="#FFFFFF"
+            android:fontFamily="@font/hanna"/>
+        <EditText
+            android:id="@+id/edit_account"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:text="Please Enter Your Account"
+            android:paddingHorizontal="3dp"
+            android:background="@drawable/login_input_background"
+            android:fontFamily="@font/hanna"
+            android:layout_marginBottom="50dp"/>
+        <TextView
+            android:id="@+id/txt_password"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Password"
+            android:textSize="20dp"
+            android:textColor="#FFFFFF"
+            android:fontFamily="@font/hanna"/>
+        <EditText
+            android:id="@+id/edit_password"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:ems="10"
+            android:inputType="textPassword"
+            android:text="Please Enter Your Account"
+            android:paddingHorizontal="3dp"
+            android:background="@drawable/login_input_background"
+            android:fontFamily="@font/hanna"/>
+    </LinearLayout>
+</LinearLayout>
