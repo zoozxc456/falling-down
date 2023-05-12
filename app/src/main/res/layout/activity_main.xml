@@ -1,72 +1,79 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".LandingActivity">
 
-    <ImageView
-        android:id="@+id/background"
-        android:layout_width="500dp"
-        android:layout_height="476dp"
-        android:layout_marginStart="-50dp"
-        android:layout_marginTop="-52dp"
-        android:contentDescription="@string/background"
-        android:src="@drawable/background"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0"
-        tools:ignore="VisualLintBounds,ImageContrastCheck" />
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/txt_title_zh_tw"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:letterSpacing="0.05"
-        android:text="@string/txt_title_zh_tw"
-        android:textAlignment="center"
-        android:textColor="@color/white"
-        android:textSize="18sp"
-        android:fontFamily="@font/jf_openhuninn"
-        android:visibility="visible"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.085" />
+        <ImageView
+            android:id="@+id/background"
+            android:layout_width="500dp"
+            android:layout_height="476dp"
+            android:layout_marginStart="-50dp"
+            android:layout_marginTop="-52dp"
+            android:contentDescription="@string/background"
+            android:src="@drawable/background"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.0"
+            tools:ignore="VisualLintBounds,ImageContrastCheck" />
 
-    <TextView
-        android:id="@+id/txt_title_en"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:letterSpacing="0.05"
-        android:lineHeight="45dp"
-        android:text="Falling\n Down"
-        android:textColor="@color/white"
-        android:textSize="48dp"
-        android:fontFamily="@font/hanna"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.176" />
+        <TextView
+            android:id="@+id/txt_title_zh_tw"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/jf_openhuninn"
+            android:letterSpacing="0.05"
+            android:text="@string/txt_title_zh_tw"
+            android:textAlignment="center"
+            android:textColor="@color/white"
+            android:textSize="18sp"
+            android:visibility="visible"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.498"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.085" />
 
-    <Button
-        android:id="@+id/btn_power"
-        android:layout_width="154dp"
-        android:layout_height="153dp"
-        android:background="@drawable/power_switch"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.501"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.541"
-        tools:ignore="SpeakableTextPresentCheck" />
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <TextView
+            android:id="@+id/txt_title_en"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/hanna"
+            android:letterSpacing="0.05"
+            android:lineHeight="45dp"
+            android:text="Falling\n Down"
+            android:textColor="@color/white"
+            android:textSize="48dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.498"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.176" />
+
+        <Button
+            android:id="@+id/btn_power"
+            android:layout_width="154dp"
+            android:layout_height="153dp"
+            android:background="@drawable/power_switch"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.501"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.541"
+            tools:ignore="SpeakableTextPresentCheck" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <include layout="@layout/activity_login" />
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
