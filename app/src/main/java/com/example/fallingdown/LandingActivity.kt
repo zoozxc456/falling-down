@@ -116,6 +116,9 @@ private class StatisticsChart(val chart: BarChart) {
         chart.xAxis.isEnabled = false
         chart.description.isEnabled = false
         chart.legend.isEnabled = false
+        chart.isDoubleTapToZoomEnabled = false
+        chart.setTouchEnabled(true)
+        chart.setPinchZoom(false)
         chart.setBackgroundColor(Color.parseColor("#FFFFFF"))
         chart.invalidate()
     }
