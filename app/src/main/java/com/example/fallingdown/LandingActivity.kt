@@ -1,10 +1,12 @@
 package com.example.fallingdown
 
+import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
 import android.view.View
 import android.widget.ActionMenuView.LayoutParams
 import android.widget.Button
+import android.widget.FrameLayout
 import androidx.appcompat.app.AppCompatActivity
 import com.github.mikephil.charting.charts.BarChart
 import com.github.mikephil.charting.data.BarData
@@ -31,6 +33,22 @@ class LandingActivity : AppCompatActivity() {
         val applicationsView = findViewById<View>(R.id.user_application_bottom_sheet)
         val closeApplicationsViewBtn = findViewById<Button>(R.id.btn_close_user_application)
         val applicationsBottomSheet = BaseBottomSheet(applicationsView, closeApplicationsViewBtn)
+
+        applicationsBottomSheet.view.findViewById<FrameLayout>(R.id.btn_record).setOnClickListener {
+            startActivity(Intent(this,RecordActivity::class.java))
+        }
+
+        applicationsBottomSheet.view.findViewById<FrameLayout>(R.id.btn_rank).setOnClickListener {
+            startActivity(Intent(this,RankActivity::class.java))
+        }
+
+        applicationsBottomSheet.view.findViewById<FrameLayout>(R.id.btn_friends).setOnClickListener {
+            startActivity(Intent(this,FriendsActivity::class.java))
+        }
+
+        applicationsBottomSheet.view.findViewById<FrameLayout>(R.id.btn_profile).setOnClickListener {
+            startActivity(Intent(this,ProfileActivity::class.java))
+        }
 
         val chart = findViewById<BarChart>(R.id.barChart)
         val barChart = StatisticsChart(chart)
@@ -116,6 +134,9 @@ private class StatisticsChart(val chart: BarChart) {
         chart.xAxis.isEnabled = false
         chart.description.isEnabled = false
         chart.legend.isEnabled = false
+        chart.isDoubleTapToZoomEnabled = false
+        chart.setTouchEnabled(true)
+        chart.setPinchZoom(false)
         chart.setBackgroundColor(Color.parseColor("#FFFFFF"))
         chart.invalidate()
     }

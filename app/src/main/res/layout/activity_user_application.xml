@@ -177,11 +177,13 @@
             android:orientation="horizontal">
 
             <FrameLayout
+                android:id="@+id/btn_record"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_gravity="center"
                 android:layout_weight="1"
-                android:background="#64C59E">
+                android:background="#64C59E"
+                android:clickable="true">
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
@@ -216,11 +218,13 @@
             </FrameLayout>
 
             <FrameLayout
+                android:id="@+id/btn_rank"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_gravity="center"
                 android:layout_weight="1"
-                android:background="#A6CB83">
+                android:background="#A6CB83"
+                android:clickable="true">
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
@@ -260,11 +264,13 @@
             android:orientation="horizontal">
 
             <FrameLayout
+                android:id="@+id/btn_friends"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_gravity="center"
                 android:layout_weight="1"
-                android:background="#C8CE76">
+                android:background="#C8CE76"
+                android:clickable="true">
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
@@ -299,11 +305,13 @@
             </FrameLayout>
 
             <FrameLayout
+                android:id="@+id/btn_profile"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_gravity="center"
                 android:layout_weight="1"
-                android:background="#E9D168">
+                android:background="#E9D168"
+                android:clickable="true">
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
