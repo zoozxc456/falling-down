@@ -26,41 +26,40 @@ class FriendsActivity : AppCompatActivity() {
 
     }
 
+    class FriendsListAdapter(private val friends: List<FriendListModel>) :
+        RecyclerView.Adapter<FriendsListAdapter.ViewHolder>() {
+        lateinit var context: Context
 
-}
-class FriendsListAdapter(private val friends: List<FriendListModel>) :
-    RecyclerView.Adapter<FriendsListAdapter.ViewHolder>() {
-    lateinit var context: Context
+        class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
+            val leftItem: Button
+            val rightItem: Button
 
-    class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        val leftItem: Button
-        val rightItem: Button
-
-        init {
-            leftItem = view.findViewById(R.id.friend_list_left_item)
-            rightItem = view.findViewById(R.id.friend_list_right_item)
+            init {
+                leftItem = view.findViewById(R.id.friend_list_left_item)
+                rightItem = view.findViewById(R.id.friend_list_right_item)
+            }
         }
-    }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val view = LayoutInflater.from(parent.context)
-            .inflate(R.layout.recyclerview_friend, parent, false)
-        context = parent.context
-        return ViewHolder(view)
-    }
+        override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
+            val view = LayoutInflater.from(parent.context)
+                .inflate(R.layout.recyclerview_friend, parent, false)
+            context = parent.context
+            return ViewHolder(view)
+        }
 
-    override fun getItemCount(): Int = friends.size
+        override fun getItemCount(): Int = friends.size
 
-    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val friend = friends[position]
+        override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+            val friend = friends[position]
 
-        val leftFriendItem = holder.leftItem
-        val rightFriendItem = holder.rightItem
-        leftFriendItem.text = friend.leftItem.username
-        if (friend.rightItem == null) {
-            rightFriendItem.visibility = View.INVISIBLE
-        } else {
-            rightFriendItem.text = friend.rightItem.username
+            val leftFriendItem = holder.leftItem
+            val rightFriendItem = holder.rightItem
+            leftFriendItem.text = friend.leftItem.username
+            if (friend.rightItem == null) {
+                rightFriendItem.visibility = View.INVISIBLE
+            } else {
+                rightFriendItem.text = friend.rightItem.username
+            }
         }
     }
 }
