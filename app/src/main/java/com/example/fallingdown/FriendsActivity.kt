@@ -1,6 +1,7 @@
 package com.example.fallingdown
 
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -21,6 +22,11 @@ class FriendsActivity : AppCompatActivity() {
         val backToPreviousButton = findViewById<ImageView>(R.id.btn_friend_back_page)
         backToPreviousButton.setOnClickListener {
             finish()
+        }
+
+        val displayQRCodeButton = findViewById<ImageView>(R.id.btn_display_qrcode)
+        displayQRCodeButton.setOnClickListener {
+            startActivity(Intent(this,DisplayQRCodeActivity::class.java))
         }
 
         val friends = SampleFriendData.friends
