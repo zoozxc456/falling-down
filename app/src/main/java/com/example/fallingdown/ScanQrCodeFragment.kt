@@ -7,15 +7,18 @@ import android.os.Bundle
 import android.util.Log
 import android.util.SparseArray
 import android.view.*
+import android.widget.ImageView
 import androidx.core.app.ActivityCompat
 import androidx.fragment.app.Fragment
+import com.example.fallingdown.interfaces.IAddNewFriendFragmentCallback
 import com.google.android.gms.vision.CameraSource
 import com.google.android.gms.vision.Detector
 import com.google.android.gms.vision.barcode.Barcode
 import com.google.android.gms.vision.barcode.BarcodeDetector
 
-class AddNewFriendFragment(private val fragment: String) : Fragment() {
-
+class ScanQrCodeFragment : Fragment() {
+    private lateinit var _callback: IAddNewFriendFragmentCallback
+    private val _fragment: ConfirmAddFriendFragment = ConfirmAddFriendFragment()
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -24,8 +27,22 @@ class AddNewFriendFragment(private val fragment: String) : Fragment() {
         val view =
             LayoutInflater.from(context).inflate(R.layout.fragment_scan_qr_code, container, false)
         val surfaceView = view.findViewById<SurfaceView>(R.id.qrcode_scanner)
+        surfaceView.setOnClickListener {
+            parentFragmentManager.popBackStack()
+            parentFragmentManager.beginTransaction()
+                .replace(R.id.friend_fragment_container, _fragment).addToBackStack(null).commit()
+        }
+        val backToPreviousFragmentButton =
+            view.findViewById<ImageView>(R.id.btn_scan_qrcode_back_page)
+        backToPreviousFragmentButton.setOnClickListener {
+            requireActivity().supportFragmentManager.popBackStack()
+        }
         scanQrCode(surfaceView)
         return view
+    }
+
+    fun setCallback(callback: IAddNewFriendFragmentCallback) {
+        _callback = callback
     }
 
     private fun scanQrCode(surfaceView: SurfaceView) {

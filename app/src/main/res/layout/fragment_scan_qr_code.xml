@@ -7,7 +7,7 @@
     android:background="@color/black">
 
     <ImageView
-        android:id="@+id/btn_record_back_page"
+        android:id="@+id/btn_scan_qrcode_back_page"
         android:layout_width="32dp"
         android:layout_height="32dp"
         android:clickable="true"
