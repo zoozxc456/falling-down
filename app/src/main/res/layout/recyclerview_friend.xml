@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1">
+
+        <Button
+            android:id="@+id/friend_list_left_item"
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:background="@drawable/friend_list_button"
+            android:layout_margin="5dp"
+            android:text="Ruby"
+            android:fontFamily="@font/hanna"
+            android:textSize="28dp"
+            android:letterSpacing=".05"
+            android:textAlignment="viewStart"
+            android:drawableLeft="@drawable/friend_list_phone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1">
+
+        <Button
+            android:id="@+id/friend_list_right_item"
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:background="@drawable/friend_list_button"
+            android:layout_margin="5dp"
+            android:text="Ruby"
+            android:fontFamily="@font/hanna"
+            android:textSize="28dp"
+            android:letterSpacing=".05"
+            android:textAlignment="viewStart"
+            android:drawableLeft="@drawable/friend_list_phone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</LinearLayout>
