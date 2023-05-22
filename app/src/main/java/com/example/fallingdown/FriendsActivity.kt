@@ -15,6 +15,7 @@ import com.example.fallingdown.model.FriendListModel
 import com.example.fallingdown.model.SampleFriendData
 
 class FriendsActivity : AppCompatActivity() {
+    private val addNewFriendFragment = AddNewFriendFragment("")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_friends)
@@ -29,6 +30,11 @@ class FriendsActivity : AppCompatActivity() {
             startActivity(Intent(this,DisplayQRCodeActivity::class.java))
         }
 
+        val scanQrCordButton = findViewById<ImageView>(R.id.btn_scan_qrcode)
+        scanQrCordButton.setOnClickListener {
+            showQrCodeScanner()
+        }
+
         val friends = SampleFriendData.friends
 
         val recyclerView = this.findViewById<RecyclerView>(R.id.recyclerView_friends)
@@ -36,6 +42,13 @@ class FriendsActivity : AppCompatActivity() {
         layoutManager.orientation = LinearLayoutManager.VERTICAL
         recyclerView.layoutManager = layoutManager
         recyclerView.adapter = FriendsListAdapter(friends)
+    }
+
+    private fun showQrCodeScanner(){
+        val fragment =addNewFriendFragment
+        val transaction = supportFragmentManager.beginTransaction()
+        transaction.replace(R.id.friend_fragment_container, fragment)
+        transaction.commit()
     }
 
     class FriendsListAdapter(private val friends: List<FriendListModel>) :
