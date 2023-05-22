@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -16,6 +17,12 @@ class FriendsActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_friends)
+
+        val backToPreviousButton = findViewById<ImageView>(R.id.btn_friend_back_page)
+        backToPreviousButton.setOnClickListener {
+            finish()
+        }
+
         val friends = SampleFriendData.friends
 
         val recyclerView = this.findViewById<RecyclerView>(R.id.recyclerView_friends)
@@ -23,7 +30,6 @@ class FriendsActivity : AppCompatActivity() {
         layoutManager.orientation = LinearLayoutManager.VERTICAL
         recyclerView.layoutManager = layoutManager
         recyclerView.adapter = FriendsListAdapter(friends)
-
     }
 
     class FriendsListAdapter(private val friends: List<FriendListModel>) :
