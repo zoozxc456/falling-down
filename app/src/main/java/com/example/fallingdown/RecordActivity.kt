@@ -20,6 +20,11 @@ class RecordActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_record)
 
+        val backToPreviousButton = findViewById<ImageView>(R.id.btn_record_back_page)
+        backToPreviousButton.setOnClickListener {
+            finish()
+        }
+
         val sampleData = SampleData.records
 
         val layoutManager = LinearLayoutManager(this)
