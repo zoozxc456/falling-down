@@ -11,16 +11,14 @@ import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.fallingdown.interfaces.IAddNewFriendFragmentCallback
 import com.example.fallingdown.model.FriendListModel
 import com.example.fallingdown.model.SampleFriendData
 
-class FriendsActivity : AppCompatActivity(),IAddNewFriendFragmentCallback {
+class FriendsActivity : AppCompatActivity() {
     private val scanQrCodeFragment = ScanQrCodeFragment()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_friends)
-        scanQrCodeFragment.setCallback(this)
 
         val backToPreviousButton = findViewById<ImageView>(R.id.btn_friend_back_page)
         backToPreviousButton.setOnClickListener {
@@ -45,14 +43,7 @@ class FriendsActivity : AppCompatActivity(),IAddNewFriendFragmentCallback {
         recyclerView.layoutManager = layoutManager
         recyclerView.adapter = FriendsListAdapter(friends)
     }
-    override fun onFragmentBackToPrevious() {
-        val fragmentTransaction = supportFragmentManager.beginTransaction()
-//        fragmentTransaction.replace(R.id.friend_fragment_container, NextFragment())
-//        fragmentTransaction.commit()
-        fragmentTransaction
-            .remove(scanQrCodeFragment)
-            .commit()
-    }
+
     private fun showQrCodeScanner(){
         val transaction = supportFragmentManager.beginTransaction()
         transaction.replace(R.id.friend_fragment_container, scanQrCodeFragment).addToBackStack(null)

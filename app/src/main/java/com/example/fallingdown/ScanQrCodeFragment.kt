@@ -10,14 +10,12 @@ import android.view.*
 import android.widget.ImageView
 import androidx.core.app.ActivityCompat
 import androidx.fragment.app.Fragment
-import com.example.fallingdown.interfaces.IAddNewFriendFragmentCallback
 import com.google.android.gms.vision.CameraSource
 import com.google.android.gms.vision.Detector
 import com.google.android.gms.vision.barcode.Barcode
 import com.google.android.gms.vision.barcode.BarcodeDetector
 
 class ScanQrCodeFragment : Fragment() {
-    private lateinit var _callback: IAddNewFriendFragmentCallback
     private val _fragment: ConfirmAddFriendFragment = ConfirmAddFriendFragment()
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -39,10 +37,6 @@ class ScanQrCodeFragment : Fragment() {
         }
         scanQrCode(surfaceView)
         return view
-    }
-
-    fun setCallback(callback: IAddNewFriendFragmentCallback) {
-        _callback = callback
     }
 
     private fun scanQrCode(surfaceView: SurfaceView) {
