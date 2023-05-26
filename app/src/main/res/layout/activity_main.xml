@@ -73,6 +73,20 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.541"
             tools:ignore="SpeakableTextPresentCheck" />
+
+        <TextView
+            android:id="@+id/txt_falling_down_service_status"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="手機被保護囉"
+            android:letterSpacing=".05"
+            android:fontFamily="@font/jf_openhuninn"
+            android:textSize="20dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.71" />
     </androidx.constraintlayout.widget.ConstraintLayout>
     <include layout="@layout/activity_user_application" />
     <include layout="@layout/activity_login" />
