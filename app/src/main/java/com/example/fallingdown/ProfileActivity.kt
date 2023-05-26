@@ -1,8 +1,10 @@
 package com.example.fallingdown
 
-import androidx.appcompat.app.AppCompatActivity
+import android.content.Context
 import android.os.Bundle
+import android.widget.Button
 import android.widget.ImageView
+import androidx.appcompat.app.AppCompatActivity
 
 class ProfileActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -11,6 +13,13 @@ class ProfileActivity : AppCompatActivity() {
 
         val backToPreviousActivityButton = findViewById<ImageView>(R.id.btn_profile_back_page)
         backToPreviousActivityButton.setOnClickListener {
+            finish()
+        }
+
+        val logoutButton = findViewById<Button>(R.id.btn_profile_logout)
+        logoutButton.setOnClickListener {
+            val sp = getSharedPreferences("mySharedPreferences", Context.MODE_PRIVATE)
+            sp.edit().putString("acc", "").apply()
             finish()
         }
     }
