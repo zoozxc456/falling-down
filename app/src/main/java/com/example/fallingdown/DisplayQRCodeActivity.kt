@@ -1,5 +1,6 @@
 package com.example.fallingdown
 
+import android.content.Context
 import android.graphics.Bitmap
 import android.graphics.Color
 import android.os.Bundle
@@ -12,8 +13,12 @@ class DisplayQRCodeActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_display_qrcode)
+
+        val sp = getSharedPreferences("mySharedPreferences", Context.MODE_PRIVATE)
+        val userId = sp.getString("userId", "")
+
         val qrcodeImageView = findViewById<ImageView>(R.id.iv_qrcode)
-        val qrCode = generateQrcode("test Data")
+        val qrCode = generateQrcode(userId!!)
         qrcodeImageView.setImageBitmap(qrCode)
 
         val backToFriendsActivityButton = findViewById<ImageView>(R.id.btn_display_qrcode_back_page)

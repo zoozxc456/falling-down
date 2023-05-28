@@ -39,22 +39,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_weight="8"
+                android:layout_weight="9"
                 android:fontFamily="@font/hanna"
                 android:gravity="center"
                 android:text="10:24"
-                android:textColor="@color/black"
-                android:textSize="16dp" />
-
-            <TextView
-                android:id="@+id/txt_record_value"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_weight="1"
-                android:fontFamily="@font/hanna"
-                android:gravity="center"
-                android:text="134cm"
                 android:textColor="@color/black"
                 android:textSize="16dp" />
         </LinearLayout>

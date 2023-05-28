@@ -18,7 +18,7 @@
         android:layout_weight="1">
 
         <TextView
-            android:id="@+id/login_title"
+            android:id="@+id/user_application_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
 
@@ -88,6 +88,7 @@
                     android:text="今日掉落" />
 
                 <TextView
+                    android:id="@+id/txt_falling_times"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
@@ -132,6 +133,7 @@
                         android:textSize="16dp" />
 
                     <TextView
+                        android:id="@+id/txt_falling_percent"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"

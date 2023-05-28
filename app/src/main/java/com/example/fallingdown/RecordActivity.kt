@@ -1,7 +1,9 @@
 package com.example.fallingdown
 
 import android.content.Context
+import android.graphics.Color
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,28 +12,51 @@ import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.fallingdown.model.RecordModel
-import com.example.fallingdown.model.SampleData
-import com.example.fallingdown.model.SubItemModel
+import com.example.fallingdown.model.*
+import com.example.fallingdown.service.RecordService
+import com.example.fallingdown.service.StatisticService
+import com.github.mikephil.charting.data.BarData
+import com.github.mikephil.charting.data.BarDataSet
+import com.github.mikephil.charting.data.BarEntry
+import com.github.mikephil.charting.formatter.DefaultValueFormatter
+import retrofit2.Call
+import retrofit2.Response
 
 class RecordActivity : AppCompatActivity() {
-
+    private lateinit var _context :Context
+//    private lateinit var _view:View
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_record)
+
+        _context = this
+        val sp = getSharedPreferences("mySharedPreferences", Context.MODE_PRIVATE)
+        val userId = sp.getString("acc", "")
 
         val backToPreviousButton = findViewById<ImageView>(R.id.btn_record_back_page)
         backToPreviousButton.setOnClickListener {
             finish()
         }
 
-        val sampleData = SampleData.records
+        RecordService.retrofitService.getRecordsByUserId(userId!!)
+            .enqueue(object : retrofit2.Callback<RecordResponseModel> {
+                override fun onResponse(
+                    call: Call<RecordResponseModel>,
+                    response: Response<RecordResponseModel>
+                ) {
+                    val records = response.body()?.records
+                    Log.d("record",response.body().toString())
+                    val layoutManager = LinearLayoutManager(_context)
+                    layoutManager.orientation = LinearLayoutManager.VERTICAL
+                    val recordRecyclerView = findViewById<RecyclerView>(R.id.recyclerView_record)
+                    recordRecyclerView.layoutManager = layoutManager
+                    recordRecyclerView.adapter = RecordAdapter(records!!)
+                }
 
-        val layoutManager = LinearLayoutManager(this)
-        layoutManager.orientation = LinearLayoutManager.VERTICAL
-        val recordRecyclerView = this.findViewById<RecyclerView>(R.id.recyclerView_record)
-        recordRecyclerView.layoutManager = layoutManager
-        recordRecyclerView.adapter = RecordAdapter(sampleData)
+                override fun onFailure(call: Call<RecordResponseModel>, t: Throwable) {
+                    Log.e("error",t.toString())
+                }
+            })
     }
 }
 
@@ -88,11 +113,9 @@ private class SubItemAdapter(private val subItemList: List<SubItemModel>) :
 
         val txtRecordOrder :TextView
         val txtRecordTime :TextView
-        val txtRecordValue:TextView
         init {
             txtRecordOrder = view.findViewById(R.id.txt_record_order)
             txtRecordTime = view.findViewById(R.id.txt_record_time)
-            txtRecordValue = view.findViewById(R.id.txt_record_value)
         }
     }
 
@@ -108,15 +131,12 @@ private class SubItemAdapter(private val subItemList: List<SubItemModel>) :
         val subItem = subItemList[position]
         val order = subItem.order
         val time = subItem.time
-        val value = subItem.value
 
         val txtRecordOrder :TextView = holder.txtRecordOrder
         val txtRecordTime :TextView = holder.txtRecordTime
-        val txtRecordValue:TextView = holder.txtRecordValue
 
         txtRecordOrder.text = order
         txtRecordTime.text = time
-        txtRecordValue.text = value
     }
 
     override fun getItemCount() = subItemList.size

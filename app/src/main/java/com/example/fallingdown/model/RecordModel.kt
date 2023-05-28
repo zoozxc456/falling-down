@@ -1,16 +1,18 @@
 package com.example.fallingdown.model
 
 data class RecordModel(val date: String, val subItemList: List<SubItemModel>)
-data class SubItemModel(val order: String, val time: String, val value: String)
+data class SubItemModel(val order: String, val time: String)
+
+data class RecordResponseModel(val records:List<RecordModel>)
 
 object SampleData {
 
     private val subItemList = listOf(
-        SubItemModel("#1", "10:24", "137cm"),
-        SubItemModel("#2", "10:25", "127cm"),
-        SubItemModel("#3", "10:26", "117cm"),
-        SubItemModel("#4", "10:27", "107cm"),
-        SubItemModel("#5", "10:28", "131cm"),
+        SubItemModel("#1", "10:24"),
+        SubItemModel("#3", "10:26"),
+        SubItemModel("#2", "10:25"),
+        SubItemModel("#4", "10:27"),
+        SubItemModel("#5", "10:28"),
     )
 
     val records = listOf(

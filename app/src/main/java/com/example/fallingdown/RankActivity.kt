@@ -1,7 +1,9 @@
 package com.example.fallingdown
 
+import android.content.Context
 import android.graphics.Color
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,27 +14,52 @@ import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.fallingdown.model.RankModel
-import com.example.fallingdown.model.SampleRankData
+import com.example.fallingdown.service.RankService
+import retrofit2.Call
+import retrofit2.Response
+import java.math.RoundingMode
+import java.text.DecimalFormat
 
 class RankActivity : AppCompatActivity() {
+    private lateinit var _context: Context
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_rank)
+
+        _context = this
+        val sp = getSharedPreferences("mySharedPreferences", Context.MODE_PRIVATE)
+        val userId = sp.getString("acc", "")
+        val username = sp.getString("username","")
 
         findViewById<ImageView>(R.id.btn_rank_back_page).setOnClickListener {
             finish()
         }
 
-        val rank = SampleRankData.rank
+        RankService.retrofitService.getRecordsByUserId(userId!!)
+            .enqueue(object : retrofit2.Callback<List<RankModel>> {
+                override fun onResponse(
+                    call: Call<List<RankModel>>,
+                    response: Response<List<RankModel>>
+                ) {
+                    val rank: List<RankModel> = response.body()!!
 
-        val recyclerView = this.findViewById<RecyclerView>(R.id.recyclerView_rank)
-        val layoutManager = LinearLayoutManager(this)
-        layoutManager.orientation = LinearLayoutManager.VERTICAL
-        recyclerView.layoutManager = layoutManager
-        recyclerView.adapter = RankAdapter(rank)
+                    val recyclerView = findViewById<RecyclerView>(R.id.recyclerView_rank)
+                    val layoutManager = LinearLayoutManager(_context)
+                    layoutManager.orientation = LinearLayoutManager.VERTICAL
+                    recyclerView.layoutManager = layoutManager
+                    recyclerView.adapter = RankAdapter(rank,username!!)
+
+                    Log.d("rank", response.body().toString())
+                }
+
+                override fun onFailure(call: Call<List<RankModel>>, t: Throwable) {
+
+                }
+
+            })
     }
 
-    class RankAdapter(private val rank: List<RankModel>) :
+    class RankAdapter(private val rank: List<RankModel>,private val username:String) :
         RecyclerView.Adapter<RankAdapter.ViewHolder>() {
 
         class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
@@ -41,6 +68,7 @@ class RankActivity : AppCompatActivity() {
             val usernameTextView: TextView
             val frequencyTextView: TextView
             val cardViewContainer: CardView
+
             init {
                 badgeImageView = view.findViewById(R.id.iv_rank_badge)
                 badgeTextView = view.findViewById(R.id.txt_rank_badge)
@@ -64,7 +92,7 @@ class RankActivity : AppCompatActivity() {
             val badgeTextView: TextView = holder.badgeTextView
             val usernameTextView: TextView = holder.usernameTextView
             val frequencyTextView: TextView = holder.frequencyTextView
-            val cardViewContainer:CardView = holder.cardViewContainer
+            val cardViewContainer: CardView = holder.cardViewContainer
             setBadgeImage(badgeImageView, position)
 
             val isBadgeTextVisible = position >= 3
@@ -76,8 +104,8 @@ class RankActivity : AppCompatActivity() {
             setUsername(usernameTextView, rank.username)
             setFrequencyValue(frequencyTextView, rank.frequency)
 
-            val MY_USERNAME = "Ben"
-            if (rank.username.trim() ==MY_USERNAME){
+//            val MY_USERNAME = "Ben"
+            if (rank.username.trim() == username) {
                 cardViewContainer.setCardBackgroundColor(Color.parseColor("#FFD25E"))
                 badgeImageView.setImageResource(R.drawable.myself_badge)
             }
@@ -106,7 +134,10 @@ class RankActivity : AppCompatActivity() {
         }
 
         fun setFrequencyValue(textView: TextView, frequency: Double) {
-            textView.text = frequency.toString()
+            val df = DecimalFormat("#.##")
+            df.roundingMode = RoundingMode.DOWN
+            val roundOff = df.format(frequency)
+            textView.text = roundOff.toString()
         }
     }
 }
