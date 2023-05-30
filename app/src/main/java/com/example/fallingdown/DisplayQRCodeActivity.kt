@@ -15,7 +15,7 @@ class DisplayQRCodeActivity : AppCompatActivity() {
         setContentView(R.layout.activity_display_qrcode)
 
         val sp = getSharedPreferences("mySharedPreferences", Context.MODE_PRIVATE)
-        val userId = sp.getString("userId", "")
+        val userId = sp.getString("acc", "")
 
         val qrcodeImageView = findViewById<ImageView>(R.id.iv_qrcode)
         val qrCode = generateQrcode(userId!!)
